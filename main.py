@@ -16,7 +16,7 @@ import database
 
 # INITIALIZATION OF TKINTER WINDOW, SETTING ATTRIBUTES, AND ADDING BACKGROUND IMAGE
 app = customtkinter.CTk()
-app.title('Inventory Management System')
+app.title('Liquor Inventory System')
 # app.geometry('800x680') # preferrable size if create_chart() is included
 app.geometry('730x480')
 app.config(bg='#0A0B0C')
