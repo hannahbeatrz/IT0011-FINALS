@@ -2,7 +2,7 @@ import os # imported os
 def create_table():
     if os.path.isfile('Products.txt'): #checks if path already exists
         with open('Products.txt', 'a') as file: #append if true
-            file.write("id\tname\tin_stock\n")
+            pass
     else:
         with open('Products.txt', 'w+') as file: #create new if false
                 file.write("id\tname\tin_stock\n")
@@ -24,7 +24,6 @@ def delete_product(id):
     with open('Products.txt', 'r') as file:
         lines = file.readlines()
     
-    # Reopen the file in write mode to overwrite the file
     with open('Products.txt', 'w') as file:
         for line in lines:
             # If the line does not start with the id to be deleted, write it back to the file
@@ -39,15 +38,12 @@ def update_product(new_name, new_stock, id):
     
     # Reopen the file in write mode to overwrite the file
     with open('Products.txt', 'w') as file:
-        updated = False
         for line in lines:
             # If the line starts with the id to be updated, write the new values to the file
             if line.startswith(f"{id}\t"):
                 file.write(f"{id}\t{new_name}\t{new_stock}\n")
-                updated = True
-            elif updated == False:
+            else:
                 file.write(line)
-                updated = False
                 
             
         
