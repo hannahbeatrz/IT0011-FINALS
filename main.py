@@ -4,7 +4,7 @@ from tkinter import ttk
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
-import database
+import file_handling
 
 ''' open and run database.py first to create the database and table 
     before running this file
@@ -45,7 +45,7 @@ def display_data(event):
         pass
 
 def add_to_treeview():
-    products = database.fetch_products()
+    products = file_handling.fetch_products()
     tree.delete(*tree.get_children())
     for product in products:
         tree.insert('', END, values=product)
@@ -64,7 +64,7 @@ def delete():
         messagebox.showerror('Error', 'Please select a product to delete')
     else:
         id = id_entry.get()
-        database.delete_product(id)
+        file_handling.delete_product(id)
         add_to_treeview()
         clear()
         messagebox.showinfo('Success', 'Product deleted successfully')
@@ -77,7 +77,7 @@ def update():
         id = id_entry.get()
         name = name_entry.get()
         stock = stock_entry.get()    
-        database.update_product(name, stock, id)
+        file_handling.update_product(name, stock, id)
         add_to_treeview()
         clear()
         messagebox.showinfo('Success', 'Product updated successfully') 
@@ -90,13 +90,13 @@ def insert():
     if not (id and name and stock):
         messagebox.showerror('Error', 'Please fill in all fields')
         return
-    elif database.id_exists(id):
+    elif file_handling.id_exists(id):
         messagebox.showerror('Error', 'ID already exists')
         return
     else:
         try:
             stock_value = int(stock)
-            database.insert_product(id, name, stock_value)
+            file_handling.insert_product(id, name, stock_value)
             add_to_treeview()
             clear()
             messagebox.showinfo('Success', 'Product added successfully')
