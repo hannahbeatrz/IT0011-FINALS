@@ -1,41 +1,51 @@
-import sqlite3
-
 def create_table():
-    with sqlite3.connect('Products.db') as conn:
-        cur = conn.cursor()
-        cur.execute("""CREATE TABLE IF NOT EXISTS Products (
-                        id TEXT PRIMARY KEY,
-                        name TEXT,
-                        in_stock INTEGER
-                    )""")
+    with open('Products.txt', 'a+') as file:
+        if len(file.read()) == 0:
+            file.write("id\tname\tin_stock\n")
 
 def fetch_products():
-    with sqlite3.connect('Products.db') as conn:
-        cur = conn.cursor()
-        cur.execute("SELECT * FROM Products")
-        return cur.fetchall()
+    products = []
+    with open('Products.txt', 'r') as file:
+        next(file) # For skipping the header/column names
+        for line in file:
+            product = line.strip().split('\t')
+            products.append(product)
+    return products
 
 def insert_product(id, name, in_stock):
-    with sqlite3.connect('Products.db') as conn:
-        cur = conn.cursor()
-        cur.execute("INSERT INTO Products (id, name, in_stock) VALUES (?,?,?)", (id, name, in_stock))
+    with open('Products.txt', 'a') as file:
+        file.write(f"{id}\t{name}\t{in_stock}\n")
 
 def delete_product(id):
-    with sqlite3.connect('Products.db') as conn:
-        cur = conn.cursor()
-        cur.execute("DELETE FROM Products WHERE id=?", (id,))
+    with open('Products.txt', 'r') as file:
+        lines = file.readlines()
+    
+    # Reopen the file in write mode to overwrite the file
+    with open('Products.txt', 'w') as file:
+        for line in lines:
+            # If the line does not start with the id to be deleted, write it back to the file
+            if not line.startswith(f"{id}\t"):
+                file.write(line)
 
 def update_product(new_name, new_stock, id):
-    with sqlite3.connect('Products.db') as conn:
-        cur = conn.cursor()
-        cur.execute("UPDATE Products SET name=?, in_stock=? WHERE id=?", (new_name, new_stock, id))
+    with open('Products.txt', 'r') as file:
+        lines = file.readlines()
+    
+    # Reopen the file in write mode to overwrite the file
+    with open('Products.txt', 'w') as file:
+        for line in lines:
+            # If the line starts with the id to be updated, write the new values to the file
+            if line.startswith(f"{id}\t"):
+                file.write(f"{id}\t{new_name}\t{new_stock}\n")
+            else:
+                file.write(line)
 
 def id_exists(id):
-    with sqlite3.connect('Products.db') as conn:
-        cur = conn.cursor()
-        cur.execute("SELECT * FROM Products WHERE id=?", (id,))
-        for row in cur:
-            return True
+    with open('Products.txt', 'r') as file:
+        next(file) # For skipping the header/column names
+        for line in file:
+            if line.startswith(f"{id}\t"):
+                return True
     return False
 
 create_table()
