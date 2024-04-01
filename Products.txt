@@ -1,2 +1,0 @@
-B1	bacardi	9
-id	name	in_stock

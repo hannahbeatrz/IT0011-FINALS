@@ -5,7 +5,6 @@ def create_table():
             file.write("id\tname\tin_stock\n")
     else:
         with open('Products.txt', 'w+') as file: #create new if false
-            if len(file.read()) == 0:
                 file.write("id\tname\tin_stock\n")
 
 def fetch_products():
@@ -31,6 +30,8 @@ def delete_product(id):
             # If the line does not start with the id to be deleted, write it back to the file
             if not line.startswith(f"{id}\t"):
                 file.write(line)
+            
+            
 
 def update_product(new_name, new_stock, id):
     with open('Products.txt', 'r') as file:
@@ -44,8 +45,11 @@ def update_product(new_name, new_stock, id):
             if line.startswith(f"{id}\t"):
                 file.write(f"{id}\t{new_name}\t{new_stock}\n")
                 updated = True
-            else:
+            elif updated == False:
                 file.write(line)
+                updated = False
+                
+            
         
         
       
