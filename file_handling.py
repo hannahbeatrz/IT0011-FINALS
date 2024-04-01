@@ -1,5 +1,5 @@
 def create_table():
-    with open('Products.txt', 'a+') as file:
+    with open('Products.txt', 'w+') as file:
         if len(file.read()) == 0:
             file.write("id\tname\tin_stock\n")
 
