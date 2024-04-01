@@ -1,4 +1,5 @@
-import os # imported os 
+import os 
+
 def create_table():
     if os.path.isfile('Products.txt'): #checks if path already exists
         with open('Products.txt', 'a') as file: #append if true
@@ -29,8 +30,6 @@ def delete_product(id):
             # If the line does not start with the id to be deleted, write it back to the file
             if not line.startswith(f"{id}\t"):
                 file.write(line)
-            
-            
 
 def update_product(new_name, new_stock, id):
     with open('Products.txt', 'r') as file:
@@ -45,11 +44,6 @@ def update_product(new_name, new_stock, id):
             else:
                 file.write(line)
                 
-            
-        
-        
-      
-
 def id_exists(id):
     with open('Products.txt', 'r') as file:
         # next(file) # For skipping the header/column names
