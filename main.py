@@ -17,7 +17,6 @@ import database
 # INITIALIZATION OF TKINTER WINDOW, SETTING ATTRIBUTES, AND ADDING BACKGROUND IMAGE
 app = customtkinter.CTk()
 app.title('Liquor Inventory System')
-# app.geometry('800x680') # preferrable size if create_chart() is included
 app.geometry('1000x520')
 app.config(bg='#0A0B0C')
 app.resizable(False, False)
@@ -67,7 +66,6 @@ def delete():
         database.delete_product(id)
         add_to_treeview()
         clear()
-        # create_chart()
         messagebox.showinfo('Success', 'Product deleted successfully')
         
 def update():
@@ -81,7 +79,6 @@ def update():
         database.update_product(name, stock, id)
         add_to_treeview()
         clear()
-        # create_chart()
         messagebox.showinfo('Success', 'Product updated successfully') 
 
 def insert():
@@ -101,7 +98,6 @@ def insert():
             database.insert_product(id, name, stock_value)
             add_to_treeview()
             clear()
-            # create_chart()
             messagebox.showinfo('Success', 'Product added successfully')
         except ValueError:
             messagebox.showerror('Error', 'Stock must be an integer')
