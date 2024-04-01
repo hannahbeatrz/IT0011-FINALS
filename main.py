@@ -12,6 +12,7 @@ import database
     (optional) install the following packages if not yet installed:
     pip install customtkinter
     pip install matplotlib
+    pip install pillow
 '''
 
 # INITIALIZATION OF TKINTER WINDOW, SETTING ATTRIBUTES, AND ADDING BACKGROUND IMAGE
@@ -104,12 +105,13 @@ def insert():
             return
 
 # START OF PRODUCT DETAILS FRAME
-title_label = customtkinter.CTkLabel(app, font=font2, text='Product Details', text_color='white', bg_color='#0A0B0C')
-title_label.place(x=190, y=30)
+frame_label = customtkinter.CTkLabel(app, font=font2, text='Product Details', text_color='white', bg_color='#0A0B0C')
+frame_label.place(x=180, y=30)
 
 frame = customtkinter.CTkFrame(app, bg_color='#0A0B0C', fg_color='#1B1B21', corner_radius=10, border_width=2, border_color='white', width=300, height=310)
 frame.place(x=100, y=70)
 
+# Resize image if it exceeds the maximum width and height
 original_image = Image.open('Images/liquor.png')
 image_width, image_height = original_image.size
 max_width = 150
@@ -122,6 +124,7 @@ image_label = Label(frame, image=image, bg='#1B1B21')
 image_label.image = image 
 image_label.place(x=75, y=5)
 
+# LABELS AND ENTRIES
 id_label = customtkinter.CTkLabel(frame, font=font2, text='Liquor ID:', text_color='white', bg_color='#1B1B21')
 id_label.place(x=110, y=85)
 
@@ -182,7 +185,6 @@ tree.heading('In Stock', text='In Stock')
 tree.place(x=420, y=70)
 tree.bind('<ButtonRelease>', display_data)
 # END OF DISPLAY INVENTORY FRAME
-
 
 add_to_treeview()
 app.mainloop()
