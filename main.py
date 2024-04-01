@@ -35,12 +35,14 @@ background_label.place(x=0, y=0, relwidth=1, relheight=1)
 # BUTTON FUNCTIONS/COMMANDS
 def display_data(event):
     selected_item = tree.focus()
+    file_handling.create_table()
     if selected_item:
         row = tree.item(selected_item)['values']
         clear()
         id_entry.insert(0, row[0])
         name_entry.insert(0, row[1])
         stock_entry.insert(0, row[2])
+        
     else:
         pass
 

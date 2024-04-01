@@ -1,6 +1,2 @@
+B1	bacardi	9
 id	name	in_stock
-B1	Bacardi	7
-B2	Black Label	12
-B3	Absolut Vodka	8
-B4	Jose Cuervo	8
-B5	Jack Daniel's	10
