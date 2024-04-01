@@ -6,9 +6,7 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 import file_handling
 
-''' open and run database.py first to create the database and table 
-    before running this file
-    
+''' 
     (optional) install the following packages if not yet installed:
     pip install customtkinter
     pip install matplotlib
