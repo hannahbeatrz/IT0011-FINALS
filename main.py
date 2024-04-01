@@ -17,7 +17,7 @@ import database
 # INITIALIZATION OF TKINTER WINDOW, SETTING ATTRIBUTES, AND ADDING BACKGROUND IMAGE
 app = customtkinter.CTk()
 app.title('Liquor Inventory System')
-app.geometry('1000x520')
+app.geometry('1000x550')
 app.config(bg='#0A0B0C')
 app.resizable(False, False)
 
@@ -107,8 +107,8 @@ def insert():
 title_label = customtkinter.CTkLabel(app, font=font2, text='Product Details', text_color='white', bg_color='#0A0B0C')
 title_label.place(x=190, y=30)
 
-frame = customtkinter.CTkFrame(app, bg_color='#0A0B0C', fg_color='#1B1B21', corner_radius=10, border_width=2, border_color='white', width=200, height=390)
-frame.place(x=150, y=70)
+frame = customtkinter.CTkFrame(app, bg_color='#0A0B0C', fg_color='#1B1B21', corner_radius=10, border_width=2, border_color='white', width=300, height=310)
+frame.place(x=100, y=70)
 
 original_image = Image.open('Images/liquor.png')
 image_width, image_height = original_image.size
@@ -120,37 +120,42 @@ image = ImageTk.PhotoImage(original_image)
 
 image_label = Label(frame, image=image, bg='#1B1B21')
 image_label.image = image 
-image_label.place(x=25, y=5)
+image_label.place(x=75, y=5)
 
 id_label = customtkinter.CTkLabel(frame, font=font2, text='Liquor ID:', text_color='white', bg_color='#1B1B21')
-id_label.place(x=60, y=85)
+id_label.place(x=110, y=85)
 
-id_entry = customtkinter.CTkEntry(frame, font=font2, text_color='black', fg_color='white', border_color='#B2016C', border_width=2, width=160)
+id_entry = customtkinter.CTkEntry(frame, font=font2, text_color='black', fg_color='white', border_color='#B2016C', border_width=2, width=260)
 id_entry.place(x=20, y=110)
 
 name_label = customtkinter.CTkLabel(frame, font=font2, text='Liquor Name:', text_color='white', bg_color='#1B1B21')
-name_label.place(x=45, y=158)
+name_label.place(x=90, y=158)
 
-name_entry = customtkinter.CTkEntry(frame, font=font2, text_color='black', fg_color='white', border_color='#B2016C', border_width=2, width=160)
+name_entry = customtkinter.CTkEntry(frame, font=font2, text_color='black', fg_color='white', border_color='#B2016C', border_width=2,  width=260)
 name_entry.place(x=20, y=185)
 
 stock_label = customtkinter.CTkLabel(frame, font=font2, text='In Stock:', text_color='white', bg_color='#1B1B21')
-stock_label.place(x=60, y=223)
+stock_label.place(x=110, y=223)
 
-stock_entry = customtkinter.CTkEntry(frame, font=font2, text_color='black', fg_color='white', border_color='#B2016C', border_width=2, width=160)
+stock_entry = customtkinter.CTkEntry(frame, font=font2, text_color='black', fg_color='white', border_color='#B2016C', border_width=2,  width=260)
 stock_entry.place(x=20, y=250)
 
-add_button = customtkinter.CTkButton(frame, command=insert, font=font2, text='Add', text_color='white', fg_color='#047E43', hover_color='#025B30', bg_color='#1B1B21', cursor='hand2', corner_radius=8, width=80)
-add_button.place(x=15, y=300)
+# START OF BUTTON CONTAINER
+button_container = customtkinter.CTkFrame(app, bg_color='#0A0B0C', fg_color='#1B1B21', corner_radius=10, border_width=2, border_color='white', width=300, height=120)
+button_container.place(x=100, y=400)
 
-clear_button = customtkinter.CTkButton(frame, command=lambda:clear(True), font=font2, text='Clear', text_color='white', fg_color='#E93E05', hover_color='#A82A00', bg_color='#1B1B21', cursor='hand2', corner_radius=8, width=80)
-clear_button.place(x=108, y=300)
+add_button = customtkinter.CTkButton(button_container, command=insert, font=font2, text='Add', text_color='white', fg_color='#047E43', hover_color='#025B30', bg_color='#1B1B21', cursor='hand2', corner_radius=8, width=120)
+add_button.place(x=20, y=20)
 
-update_button = customtkinter.CTkButton(frame, command=update, font=font2, text='Update', text_color='white', fg_color='#E93E05', hover_color='#A82A00', bg_color='#1B1B21', cursor='hand2', corner_radius=8, width=80)
-update_button.place(x=15, y=340)
+clear_button = customtkinter.CTkButton(button_container, command=lambda:clear(True), font=font2, text='Clear', text_color='white', fg_color='#E93E05', hover_color='#A82A00', bg_color='#1B1B21', cursor='hand2', corner_radius=8, width=120)
+clear_button.place(x=160, y=20)
 
-delete_button = customtkinter.CTkButton(frame, command=delete, font=font2, text='Delete', text_color='white', fg_color='#D20B02', hover_color='#8F0600', bg_color='#1B1B21', cursor='hand2', corner_radius=8, width=80)
-delete_button.place(x=108, y=340)
+update_button = customtkinter.CTkButton(button_container, command=update, font=font2, text='Update', text_color='white', fg_color='#E93E05', hover_color='#A82A00', bg_color='#1B1B21', cursor='hand2', corner_radius=8, width=120)
+update_button.place(x=20, y=70)
+
+delete_button = customtkinter.CTkButton(button_container, command=delete, font=font2, text='Delete', text_color='white', fg_color='#D20B02', hover_color='#8F0600', bg_color='#1B1B21', cursor='hand2', corner_radius=8, width=120)
+delete_button.place(x=160, y=70)
+# END OF BUTTON CONTAINER
 # END OF PRODUCT DETAILS FRAME
 
 
@@ -163,7 +168,7 @@ style.map('Treeview', background=[('selected', '#AA04A7')])
 # Add border-radius to the Treeview
 style.configure('Treeview', relief='solid', borderwidth=2,)
 
-tree = ttk.Treeview(app, height=18, style='Treeview')
+tree = ttk.Treeview(app, height=21, style='Treeview')
 tree['columns'] = ('ID', 'Name', 'In Stock')
 tree.column('#0', width=0, stretch=tk.NO)
 tree.column('ID', anchor=tk.CENTER, width=100)
@@ -174,7 +179,7 @@ tree.heading('ID', text='ID')
 tree.heading('Name', text='Name')
 tree.heading('In Stock', text='In Stock')
 
-tree.place(x=380, y=70)
+tree.place(x=420, y=70)
 tree.bind('<ButtonRelease>', display_data)
 # END OF DISPLAY INVENTORY FRAME
 
