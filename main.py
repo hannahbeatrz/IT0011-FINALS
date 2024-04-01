@@ -18,7 +18,7 @@ import database
 app = customtkinter.CTk()
 app.title('Liquor Inventory System')
 # app.geometry('800x680') # preferrable size if create_chart() is included
-app.geometry('730x480')
+app.geometry('1000x520')
 app.config(bg='#0A0B0C')
 app.resizable(False, False)
 
@@ -109,10 +109,10 @@ def insert():
 
 # START OF PRODUCT DETAILS FRAME
 title_label = customtkinter.CTkLabel(app, font=font2, text='Product Details', text_color='white', bg_color='#0A0B0C')
-title_label.place(x=60, y=15)
+title_label.place(x=190, y=30)
 
 frame = customtkinter.CTkFrame(app, bg_color='#0A0B0C', fg_color='#1B1B21', corner_radius=10, border_width=2, border_color='white', width=200, height=390)
-frame.place(x=25, y=45)
+frame.place(x=150, y=70)
 
 original_image = Image.open('Images/liquor.png')
 image_width, image_height = original_image.size
@@ -164,18 +164,21 @@ style.theme_use('clam')
 style.configure('Treeview', font=font3, foreground='white', background='#0A0B0C', fieldbackground='#1B1B21')
 style.map('Treeview', background=[('selected', '#AA04A7')])
 
-tree = ttk.Treeview(app, height=18)
+# Add border-radius to the Treeview
+style.configure('Treeview', relief='solid', borderwidth=2,)
+
+tree = ttk.Treeview(app, height=18, style='Treeview')
 tree['columns'] = ('ID', 'Name', 'In Stock')
 tree.column('#0', width=0, stretch=tk.NO)
 tree.column('ID', anchor=tk.CENTER, width=100)
-tree.column('Name', anchor=tk.CENTER, width=190)
+tree.column('Name', anchor=tk.CENTER, width=300)
 tree.column('In Stock', anchor=tk.CENTER, width=100)
 
 tree.heading('ID', text='ID')
 tree.heading('Name', text='Name')
 tree.heading('In Stock', text='In Stock')
 
-tree.place(x=300, y=45)
+tree.place(x=380, y=70)
 tree.bind('<ButtonRelease>', display_data)
 # END OF DISPLAY INVENTORY FRAME
 
