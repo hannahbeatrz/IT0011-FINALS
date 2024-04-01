@@ -161,7 +161,7 @@ delete_button.place(x=108, y=340)
 # START OF DISPLAY INVENTORY FRAME
 style = ttk.Style(app)
 style.theme_use('clam')
-style.configure('Treeview', font=font3, foreground='white', background='#0A0B0C', fieldbackground='#1B1B21')
+style.configure('Treeview', font=font3, foreground='white', background='#0A0B0C', fieldbackground='#1B1B21',corner_radius='8')
 style.map('Treeview', background=[('selected', '#AA04A7')])
 
 # Add border-radius to the Treeview
